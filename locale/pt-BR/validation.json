@@ -1,0 +1,183 @@
+{
+  "keyword": {
+    "required": "Obrigatório.",
+    "prohibited": "Não permitido.",
+    "type": "Tipo '{{type}}' obrigatório.",
+    "format": "Formato inválido.",
+    "enum": "Valor inválido. Possíveis valores: {{enum}}.",
+    "maximum": "Máximo '{{maximum}}' excedido.",
+    "minimum": "Mínimo '{{minimum}}' excedido.",
+    "maxLength": "Máximo de {{maxLength}} caractere(s).",
+    "minLength": "Mínimo de {{minLength}} caractere(s).",
+    "pattern": "Formato '{{pattern}}' obrigatório.",
+    "numberPattern": "Formato '{{numberPattern}}' obrigatório.",
+    "formatMaximum": "Máximo '{{formatMaximum}}' excedido.",
+    "formatMinimum": "Mínimo '{{formatMinimum}}' excedido.",
+    "additionalProperties": "Não permitido.",
+    "dependencies": "Dependências obrigatórias não informadas.",
+    "multipleOf": "Quantidade máxima de casas decimais excedida."
+  },
+  "entity": {
+    "cart": {
+      "invalid": "Carrinho de Compras inválido.",
+      "invalid_product_store": "Produto e/ou Loja inválidos.",
+      "status": {
+        "invalid": "Status do Carrinho de Compras inválido."
+      }
+    },
+    "cart_option_item": {
+      "invalid_option": "Opção inválida.",
+      "invalid_item": "Item inválido.",
+      "p_invalid_option": "Opção {{id_option}} inválida.",
+      "p_invalid_item": "Item {{id_item}} inválido.",
+      "p_required_option": "Opção '{{option}}' obrigatória.",
+      "p_max_items": "Opção '{{option}}' possui seleção máxima de {{maxItems}} Itens.",
+      "p_min_items": "Opção '{{option}}' possui seleção mínima de {{minItems}} Itens."
+    },
+    "category": {
+      "nonexistent": "CEP inexistente.",
+      "invalid": "Categoria inválida.",
+      "has_products": "Categoria possui Produto(s).",
+      "has_categories": "Categoria possui Categoria(s).",
+      "id_category_parent": {
+        "nonexistent": "Categoria predecessora inexistente.",
+        "circular_reference": "Categoria predecessora já possui a Categoria em sua hierarquia.",
+        "max_level": "Categoria predecessora está no nível máximo de profundidade da sua hierarquia."
+      }
+    },
+    "cep": {
+      "nonexistent": "CEP inexistente."
+    },
+    "customer": {
+      "password": {
+        "invalid": "Senha inválida.",
+        "dependencies": "Senha anterior obrigatória quando informada a nova Senha."
+      },
+      "cpf": {
+        "invalid": "CPF inválido.",
+        "in_use": "CPF já cadastrado."
+      },
+      "email": {
+        "in_use": "E-mail já cadastrado."
+      },
+      "id_term": {
+        "not_current": "Termo aceito não é o vigente."
+      },
+      "google_token": {
+        "invalid": "Token do Google inválido."
+      },
+      "facebook_token": {
+        "invalid": "Token do Facebook inválido."
+      }
+    },
+    "customer_address": {
+      "invalid": "Endereço inválido.",
+      "description": {
+        "in_use": "Descrição já está em uso por outro Endereço."
+      },
+      "city": {
+        "invalid": "Cidade inválida."
+      }
+    },
+    "customer_device": {
+      "nonexistent": "Dispositivo do Consumidor inexistente.",
+      "uuid": {
+        "in_use": "Dispositivo do Consumidor já cadastrado."
+      }
+    },
+    "delivery": {
+      "invalid": "Tipo de Entrega e/ou Loja inválido(s)."
+    },
+    "order": {
+      "nonexistent": "Pedido inexistente.",
+      "invalid": "Pedido inválido.",
+      "invalid_cart": "Não há Carrinho de Compras para a Loja informada.",
+      "invalid_customer": "Consumidor inválido.",
+      "invalid_delivery": "Tipo de Entrega inválido para a Loja informada.",
+      "invalid_delivery_address": "Endereço não é atendido pelo Tipo de Entrega informado.",
+      "invalid_payment": "Forma de Pagamento inválida para a Loja informada.",
+      "invalid_card_hash": "Card Hash inválido para o pagamento através de Cartão de Crédito.",
+      "invalid_billing_address": "Endereço de Cobrança inválido para o pagamento através de Cartão de Crédito.",
+      "invalid_customer_address": "O Endereço do Consumidor não é atendido pela Loja informada.",
+      "p_invalid_target_price": "Valor do Carrinho de Compras ({{price}}) diferente do Target Price ({{targetPrice}}).",
+      "invalid_installments": "Quantidade de Parcelas inválida.",
+      "invalid_store": "Loja inválida.",
+      "invalid_store_account": "Conta da Loja inválida.",
+      "closed_store": "A Loja informada encontra-se fechada.",
+      "p_insufficient_likins": "O Consumidor não possui Likins suficientes. Saldo: L$ {{balance}}."
+    },
+    "payment": {
+      "invalid": "Forma de Pagamento e/ou Loja inválido(s)."
+    },
+    "product": {
+      "invalid": "Produto inválido.",
+      "disabled": "Produto desabilitado.",
+      "disabled_at_store": "Produto desabilitado na Loja.",
+      "disabled_variations": "Produto não possui Variações habilitadas.",
+      "nonexistent": "Produto inexistente.",
+      "nonexistent_disabled": "Produto inexistente ou Produto/Variações desabilitado(s).",
+      "promotional_price": {
+        "bigger": "Preço promocional não pode ser maior ou igual ao preço",
+        "price_lower": "Preço menor ou igual ao preço promocional já cadastrado",
+        "price_mandatory": "Preço obrigatório caso informado preço promocional",
+        "not_null": "Não é possivel remover o preço enquanto existir um preço promocional"
+      },
+      "name": {
+        "in_use": "Já existe um Produto com o nome informado."
+      },
+      "sku": {
+        "in_use": "Já existe um Produto com o SKU informado.",
+        "reserved": "O prefixo 'LKN.' é reservado para a geração automática de SKUs."
+      },
+      "enabled": {
+        "no_images": "O Produto deve possuir Imagens para ser habilitado.",
+        "no_parameters": "O Produto deve possuir todos os Parâmetros obrigatórios preenchidos para ser habilitado.",
+        "variable_without_variations": "O Produto configurado como Variável deve possuir Variações ativas para ser habilitado.",
+        "invariable_with_variations": "O Produto configurado como não Variável não deve possuir Variações ativas para ser habilitado."
+      }
+    },
+    "product_variation": {
+      "invalid": "Variação de Produto inválida.",
+      "disabled": "Variação de Produto desabilitada.",
+      "in_use": "A Variação de Produto está sendo utilizada por Loja(s).",
+      "enabled_product": "O Produto está habilitado. Desabilite-o para inserir, modificar ou excluir uma Variação.",
+      "invariable_product": "O Produto não é variável e não pode possuir Variações.",
+      "sku": {
+        "in_use": "Já existe uma Variação de Produto com o SKU informado.",
+        "reserved": "O prefixo 'LKN.' é reservado para a geração automática de SKUs."
+      }
+    },
+    "product_image": {
+      "last_image_exclusion": "O Produto está habilitado e possui somente uma Imagem. Desabilite-o ou inclua outra Imagem para realizar a exclusão da Imagem."
+    },
+    "product_variable_attribute": {
+      "in_use": "O Atributo Variável já está vinculado ao Produto.",
+      "enabled_product": "O Produto está habilitado. Desabilite-o para realizar a inclusão/exclusão de Atributos Variáveis."
+    },
+    "store": {
+      "invalid": "Loja inválida."
+    },
+    "store_product": {
+      "invalid": "Produto ou Variação de Produto inválido.",
+      "disabled": "Produto ou Variação de Produto desabilitado.",
+      "nonexistent": "Produto da Loja inexistente.",
+      "existent": "O Produto ou a Variação de Produto já está vinculado à Loja.",
+      "enabled": "O Produto da Loja deve estar desabilitado para a realização de modificações.",
+      "missing_variation": "A Variação de Produto não foi informada.",
+      "has_orders": "O Produto da Loja possui Pedidos.",
+      "not_enough_stock": "Estoque Insuficiente."
+    },
+    "store_product_rating": {
+      "nonexistent": "Avaliação inexistente.",
+      "already_rated": "Produto já avaliado neste Pedido.",
+      "p_invalid_store_product": "Pedido #{{orderId}} não possui o Produto {{storeProductId}}."
+    }
+  },
+  "other": {
+    "loggi": {
+      "invalid_email": "O Tipo de Entrega da Loggi deve ser configurado com um e-mail válido.",
+      "invalid_api_key": "O Tipo de Entrega da Loggi deve ser configurado com uma API Key válida.",
+      "invalid_payment_method": "O Tipo de Entrega da Loggi deve ser configurado com uma forma de pagamento válida."
+    }
+  }
+}

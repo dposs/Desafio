@@ -1,0 +1,29 @@
+{
+  "mandatory": "Obrigatório.",
+  "nonexistent": "Inexistente.",
+  "invalid": "Inválido.",
+  "authentication": {
+    "invalid_token": "Access Token invalido.",
+    "expired_token": "Access Token expirado.",
+    "illegal_scope": "Access Token não garante acesso ao Scope solicitado.",
+    "illegal_device": "Device Id não informado ou Access Token não garante acesso ao Device sendo utilizado."
+  },
+  "password_recovery": {
+    "invalid_token": "Token inválido. Solicite novamente a recuperação de senha.",
+    "expired_token": "Token expirado. Solicite novamente a recuperação de senha.",
+    "invalid_user": "Usuário inválido.",
+    "banned_user": "Usuário banido.",
+    "disabled_user": "Usuário inativado."
+  },
+  "invalid_parameters": "Parâmetro(s) inválido(s).",
+  "invalid_properties": "Propriedade(s) inválida(s).",
+  "p_invalid_field": "{{field}} inválido.",
+  "p_invalid_environment": "Ambiente invalido: '{{environment}}'.",
+  "p_invalid_abstract_class_instantiation": "A Classe abstrata '{{class}}' não pode ser instanciada.",
+  "p_invalid_abstract_function_use": "A Função abstrata '{{function}}' deve ser implementada na classe '{{class}}'.",
+  "no_permission_create": "Cliente sem permissão para criar estas informações.",
+  "no_permission_read": "Cliente sem permissão para visualizar estas informações.",
+  "no_permission_update": "Cliente sem permissão para atualizar estas informações.",
+  "no_permission_delete": "Cliente sem permissão para excluir estas informações.",
+  "share": "Compre através do aplicativo Likin.do."
+}
