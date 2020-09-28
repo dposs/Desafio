@@ -1,5 +1,3 @@
-let Logger = require("../util/Logger");
-
 exports.server = {
   host: "localhost",
   port: 3003
@@ -15,9 +13,6 @@ exports.database = {
       username: "root",
       password: "root",
       timezone : "+00:00",
-      logging: (query, benchmark) => {
-        Logger.getInstance(exports.log).debug(query, typeof benchmark == "number" ? "[Execution time: "  + benchmark + " ms]" : undefined)
-      },
       dialectOptions: {
         decimalNumbers: true
       },

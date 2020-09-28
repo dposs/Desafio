@@ -6,9 +6,6 @@ let i18nextFSBackend = require("i18next-node-fs-backend");
 let Configuration = require("./Configuration");
 let DataSource = require("../util/DataSource");
 let DataSourceORMEnum = require("../enum/DataSourceORMEnum");
-let Logger = require("./Logger");
-
-let InternalError = require("../error/InternalError");
 
 /**
  * Biblioteca de Gerenciamento do Servidor.
@@ -35,7 +32,6 @@ class Server {
     await server.initializeConfigurations();
 
     server.express = express();
-    server.logger = Logger.initialize(Configuration.get("log"));
 
     Server.DEFAULT_ENVIRONMENT = process.env.NODE_ENV;
     Server.DEFAULT_SOURCE = "src";
@@ -161,7 +157,7 @@ class Server {
     await this.datasource
       .initialize("MySQL", DataSourceORMEnum.SEQUELIZE, {isDefault: true})
       .connect(Configuration.get("database.mysql.challenge"))
-      .catch(error => this.logger.exception(error, Logger.EMERGENCIAL));
+      .catch(error => console.error(error));
   }
 
   /**
