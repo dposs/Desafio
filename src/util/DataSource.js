@@ -189,14 +189,14 @@ class DataSource {
   /**
    * Inicializa e retorna um Model.
    *
-   * @param {string} name
+   * @param {<? extends Model>} model
    * @returns {Object}
    * @memberof DataSource
    */
-  initializeModel(schema) {
+  initializeModel(model) {
     switch(this.orm) {
       case DataSourceORMEnum.SEQUELIZE:
-        return this.sequelize.define(schema.name, schema.attributes, schema.options);
+        return model.initialize(this.sequelize);
 
       default:
         throw new IllegalArgumentError("Este Framework ORM não é suportado.");
@@ -206,12 +206,18 @@ class DataSource {
   /**
    * Armazena um Model.
    *
-   * @param {string} name
    * @param {Model} model
+   * @param {Object} [options.initializeModel = true]
    * @memberof DataSource
    */
-  addModel(name, model) {
-    this.models[name] = model;
+  addModel(model, options) {
+    let {initializeModel = true} = options || {};
+
+    if (initializeModel) {
+      model = this.initializeModel(model);
+    }
+
+    this.models[model.name] = model;
   }
 
   /**

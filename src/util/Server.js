@@ -1,3 +1,5 @@
+let passport = require("passport");
+let bodyParser = require("body-parser");
 let cors = require("cors");
 let express = require("express");
 let i18next = require("i18next");
@@ -6,6 +8,7 @@ let i18nextFSBackend = require("i18next-node-fs-backend");
 let Configuration = require("./Configuration");
 let DataSource = require("../util/DataSource");
 let DataSourceORMEnum = require("../enum/DataSourceORMEnum");
+let Loader = require("./Loader");
 
 /**
  * Biblioteca de Gerenciamento do Servidor.
@@ -170,12 +173,8 @@ class Server {
 
     Loader
       .initialize(this.source)
-      .load("common/schema/database/sequelize").except("AbstractSequelizeSchema")
-      .exec(Schema => mySQL.addSchema(new Schema(), {initializeModel: true}));
-
-    Object.values(mySQL.schemas).forEach(schema => {
-      schema.associate(mySQL.models);
-    });
+      .load("model/sequelize")
+      .exec(Model => mySQL.addModel(Model));
   }
 
   /**
@@ -195,6 +194,20 @@ class Server {
    * @memberof Server
    */
   async initializeRoutes() {
+    let CustomerController = require("../controller/CustomerController");
+
+    let customerController = new CustomerController();
+
+    // Routes
+
+    let router = express.Router();
+
+    router.route("/customer")
+      .post((request, response, next) => customerController.create(request, response).catch(next));
+
+    // Set Routers
+
+    this.express.use("/challenge", router);
   }
 
   /**
@@ -203,11 +216,11 @@ class Server {
    * @memberof Server
    */
   showStartupInfo() {
-    let size = this.name.length + 12;
+    let size = this.name.length + 20;
 
     console.log(" -----" + "".padEnd(size, "-"));
     console.log("|     " + "".padEnd(size, " ") + "|");
-    console.log("|     " + this.name + " ONLINE" + "     |");
+    console.log("|     " + (this.name + " ONLINE").padEnd(size, " ") + "|");
     console.log("|     ENVIRONMENT: " + this.environment.padEnd(size - 13, " ") + "|");
     console.log("|     PORT: " + this.port.toString().padEnd(size - 6, " ") + "|");
     console.log("|     " + "".padEnd(size, " ") + "|");

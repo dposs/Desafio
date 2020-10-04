@@ -1,6 +1,6 @@
 exports.server = {
   host: "localhost",
-  port: 3003
+  port: 3000
 };
 
 exports.database = {
@@ -17,7 +17,7 @@ exports.database = {
         decimalNumbers: true
       },
       pool: {
-    	  max: 11,
+    	  max: 10,
     	  min: 0,
     	  acquire: 30000,
     	  idle: 3000
