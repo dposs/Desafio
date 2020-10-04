@@ -16,7 +16,7 @@ class AbstractError extends Error {
    * @param {string} message
    * @param {Object} data
    * @param {ErrorEnum} type
-   * @param {HttpStatus.<code>} status
+   * @param {httpStatus.<code>} status
    * @throws {Error} Classes abstratas não podem ser instanciadas.
    * @throws {Error} Parâmetro 'data' deve ser um JSON.
    * @memberof AbstractError
@@ -58,10 +58,13 @@ class AbstractError extends Error {
     let json = {
       error: {
         code: this.type.code,
-        type: this.type.type,
-        message: this.message
+        type: this.type.type
       }
     };
+
+    if (this.message) {
+      Object.assign(json.error, {message: this.message});
+    }
 
     if (this.data) {
       Object.assign(json.error, {data: this.data});

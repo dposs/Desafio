@@ -10,6 +10,8 @@ let DataSource = require("../util/DataSource");
 let DataSourceORMEnum = require("../enum/DataSourceORMEnum");
 let Loader = require("./Loader");
 
+let RequestNotFoundError = require("../error/RequestNotFoundError");
+
 /**
  * Biblioteca de Gerenciamento do Servidor.
  *
@@ -175,6 +177,10 @@ class Server {
       .initialize(this.source)
       .load("model/sequelize")
       .exec(Model => mySQL.addModel(Model));
+
+    Object.values(mySQL.models).forEach(model => {
+      model.associate(mySQL.models);
+    });
   }
 
   /**
@@ -194,20 +200,38 @@ class Server {
    * @memberof Server
    */
   async initializeRoutes() {
+    let AuthController = require("../controller/AuthController");
     let CustomerController = require("../controller/CustomerController");
+    let ErrorController = require("../controller/ErrorController");
 
+    let authController = new AuthController();
     let customerController = new CustomerController();
+    let errorController = new ErrorController();
 
     // Routes
 
     let router = express.Router();
 
+    router.route("/login")
+      .post((request, response, next) => authController.login(request, response).catch(next));
+
     router.route("/customer")
       .post((request, response, next) => customerController.create(request, response).catch(next));
+      
 
-    // Set Routers
+    // Set Router
 
     this.express.use("/challenge", router);
+
+    // 404 Error
+
+    this.express.all("*", (request, response, next) => {
+      next(new RequestNotFoundError("Recurso inexistente: " + request.originalUrl));
+    });
+
+    // Global Error Handler
+
+    this.express.use(errorController.handler());
   }
 
   /**

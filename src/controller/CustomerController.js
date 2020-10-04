@@ -1,4 +1,4 @@
-let HttpStatus = require("http-status");
+let httpStatus = require("http-status");
 
 let CustomerService = require("../service/CustomerService");
 
@@ -31,7 +31,7 @@ class CustomerController {
     let customer = request.body;
 
     return this.service.create(customer)
-      .then(customer => response.status(HttpStatus.OK).json(customer));
+      .then(customer => response.status(httpStatus.OK).json(customer));
   }
 }
 

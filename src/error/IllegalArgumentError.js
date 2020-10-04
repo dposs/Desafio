@@ -1,4 +1,4 @@
-let HttpStatus = require("http-status");
+let httpStatus = require("http-status");
 let AbstractError = require("./common/AbstractError");
 let ErrorEnum = require("../enum/ErrorEnum");
 
@@ -20,11 +20,11 @@ class IllegalArgumentError extends AbstractError {
    * @param {Object} [options]
    * @param {Object} [options.data]
    * @param {ErrorEnum} [options.type = ErrorEnum.ILLEGAL_ARGUMENT] 
-   * @param {HttpStatus.<NAME>} [options.status = HttpStatus.INTERNAL_SERVER_ERROR] 
+   * @param {httpStatus.<NAME>} [options.status = httpStatus.INTERNAL_SERVER_ERROR] 
    * @memberof IllegalArgumentError
    */
   constructor(message, options) {
-    let {data, type = ErrorEnum.ILLEGAL_ARGUMENT, status = HttpStatus.INTERNAL_SERVER_ERROR} = options || {};
+    let {data, type = ErrorEnum.ILLEGAL_ARGUMENT, status = httpStatus.INTERNAL_SERVER_ERROR} = options || {};
     super(message, data, type, status);
   }
 }

@@ -3,6 +3,10 @@ exports.server = {
   port: 3000
 };
 
+exports.security = {
+  secret: "bb14dfd2-be85-4d24-90ee-3d45934a0dee"
+}
+
 exports.database = {
   mysql: {
     challenge: {
