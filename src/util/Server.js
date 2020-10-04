@@ -216,9 +216,11 @@ class Server {
       .post((request, response, next) => authController.login(request, response).catch(next));
 
     router.route("/customer")
-      .post((request, response, next) => customerController.create(request, response).catch(next));
-      
-
+      .post((request, response, next) => customerController.create(request, response).catch(next))
+      .get(authController.isAuthenticated(), (request, response, next) => customerController.get(request, response).catch(next))
+      .put(authController.isAuthenticated(), (request, response, next) => customerController.update(request, response).catch(next))
+      .delete(authController.isAuthenticated(), (request, response, next) => customerController.delete(request, response).catch(next));
+    
     // Set Router
 
     this.express.use("/challenge", router);
