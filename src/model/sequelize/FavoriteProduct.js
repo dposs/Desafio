@@ -1,7 +1,20 @@
-let { DataTypes, Model } = require("sequelize");
+const { DataTypes, Model } = require("sequelize");
 
+/**
+ * Model de Produto Favorito.
+ *
+ * @class FavoriteProduct
+ * @extends {Model}
+ */
 class FavoriteProduct extends Model {}
 
+/**
+ * Inicialização do Model.
+ *
+ * @static
+ * @param {Sequelize} sequelize
+ * @memberof FavoriteProduct
+ */
 FavoriteProduct.initialize = sequelize => {
   return FavoriteProduct.init({
     id: {
@@ -29,6 +42,13 @@ FavoriteProduct.initialize = sequelize => {
   });
 }
 
+/**
+ * Associações do Model.
+ *
+ * @static
+ * @param {<? extends Model>[]} models
+ * @memberof FavoriteProduct
+ */
 FavoriteProduct.associate = models => {
   // @todo daniel
 }

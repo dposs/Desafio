@@ -1,8 +1,8 @@
-let httpStatus = require("http-status");
-let i18next = require("i18next");
+const httpStatus = require("http-status");
+const i18next = require("i18next");
 
-let AbstractError = require("./common/AbstractError");
-let ErrorEnum = require("../enum/ErrorEnum");
+const AbstractError = require("./common/AbstractError");
+const ErrorEnum = require("../enum/ErrorEnum");
 
 /**
  * Erro de propriedade(s) do objeto inválida(s).

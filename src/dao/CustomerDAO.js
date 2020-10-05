@@ -1,4 +1,4 @@
-let Customer = require("../model/sequelize/Customer");
+const Customer = require("../model/sequelize/Customer");
 
 /**
  * Data Access Object (DAO) de Consumidor.

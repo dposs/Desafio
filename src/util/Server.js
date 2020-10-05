@@ -15,9 +15,6 @@ let RequestNotFoundError = require("../error/RequestNotFoundError");
 /**
  * Biblioteca de Gerenciamento do Servidor.
  *
- * @requires module:express
- * @requires module:i18next
- *
  * @class Server
  */
 class Server {
@@ -40,8 +37,6 @@ class Server {
 
     Server.DEFAULT_ENVIRONMENT = process.env.NODE_ENV;
     Server.DEFAULT_SOURCE = "src";
-
-    server.onServerCreate();
 
     return server;
   }
@@ -95,16 +90,6 @@ class Server {
    */
   get source() {
     return Server.DEFAULT_SOURCE;
-  }
-
-  /**
-   * Evento disparado no momento de criacao do Servidor.
-   *
-   * @returns {Server}
-   * @memberof Server
-   */
-  onServerCreate() {
-    return this;
   }
 
   /**
@@ -214,12 +199,12 @@ class Server {
     let AuthController = require("../controller/AuthController");
     let CustomerController = require("../controller/CustomerController");
     let ErrorController = require("../controller/ErrorController");
-    let FavoriteProductController = require("../controller/FavoriteProductController");
+    let ProductController = require("../controller/ProductController");
 
     let authController = new AuthController();
     let customerController = new CustomerController();
     let errorController = new ErrorController();
-    let favoriteProductController = new FavoriteProductController();
+    let productController = new ProductController();
 
     // Routes
 
@@ -235,7 +220,11 @@ class Server {
       .delete(authController.isAuthenticated(), (request, response, next) => customerController.delete(request, response).catch(next));
     
     router.route("/product/:id/favorite")
-      .post(authController.isAuthenticated(), (request, response, next) => favoriteProductController.create(request, response).catch(next));
+      .post(authController.isAuthenticated(), (request, response, next) => productController.addFavorite(request, response).catch(next))
+      .delete(authController.isAuthenticated(), (request, response, next) => productController.removeFavorite(request, response).catch(next));
+
+    router.route("/product/favorite")
+      .get(authController.isAuthenticated(), (request, response, next) => productController.getFavorites(request, response).catch(next))
 
     // Set Router
 

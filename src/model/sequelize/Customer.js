@@ -1,7 +1,20 @@
-let { DataTypes, Model } = require("sequelize");
+const { DataTypes, Model } = require("sequelize");
 
+/**
+ * Model de Consumidor.
+ *
+ * @class Customer
+ * @extends {Model}
+ */
 class Customer extends Model {}
 
+/**
+ * Inicialização do Model.
+ *
+ * @static
+ * @param {Sequelize} sequelize
+ * @memberof Customer
+ */
 Customer.initialize = sequelize => {
   return Customer.init({
     id: {
@@ -30,6 +43,13 @@ Customer.initialize = sequelize => {
   });
 }
 
+/**
+ * Associações do Model.
+ *
+ * @static
+ * @param {<? extends Model>[]} models
+ * @memberof Customer
+ */
 Customer.associate = models => {
   // @todo daniel
 }

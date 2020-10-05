@@ -1,5 +1,5 @@
-let fs = require("fs");
-let dir = require("path");
+const fs = require("fs");
+const dir = require("path");
 
 /**
  * Carregador de Classes.

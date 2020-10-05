@@ -1,7 +1,7 @@
-let HttpStatus = require("http-status");
+const HttpStatus = require("http-status");
 
-let AbstractError = require("./common/AbstractError");
-let ErrorEnum = require("../enum/ErrorEnum");
+const AbstractError = require("./common/AbstractError");
+const ErrorEnum = require("../enum/ErrorEnum");
 
 /**
  * Erro de validação.

@@ -1,6 +1,6 @@
-let DataSourceORMEnum = require("../enum/DataSourceORMEnum");
-let IllegalArgumentError = require("../error/IllegalArgumentError");
-let InternalError = require("../error/InternalError");
+const DataSourceORMEnum = require("../enum/DataSourceORMEnum");
+const IllegalArgumentError = require("../error/IllegalArgumentError");
+const InternalError = require("../error/InternalError");
 
 /**
  * Biblioteca de DataSources.

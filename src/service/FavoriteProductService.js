@@ -1,6 +1,7 @@
-let FavoriteProductDAO = require("../dao/FavoriteProductDAO");
+const FavoriteProductDAO = require("../dao/FavoriteProductDAO");
+const FavoriteProduct = require("../model/sequelize/FavoriteProduct");
 
-let InvalidError = require("../error/InvalidError");
+const InvalidError = require("../error/InvalidError");
 
 /**
  * Service de Produto Favorito.
@@ -19,7 +20,7 @@ class FavoriteProductService {
   }
 
   /**
-   * Cria um Produto Favorito.
+   * Cria o Produto Favorito.
    *
    * @async
    * @param {FavoriteProduct} favoriteProduct
@@ -27,12 +28,46 @@ class FavoriteProductService {
    * @memberof FavoriteProductService
    */
   async create(favoriteProduct) {
+    let ProductService = require("./ProductService");
+
     let {"customer_id": customerId, "product_id": productId} = favoriteProduct;
 
     let exists = await this.getUnique(customerId, productId);
     if (exists) throw new InvalidError("Produto já adicionado aos Favoritos."); // @todo daniel i18n
 
+    let product = await new ProductService().getById(productId);
+    if (!product) throw new InvalidError("Produto inexistente."); // @todo daniel i18n
+
     return this.dao.create(favoriteProduct);
+  }
+
+  /**
+   * Exclui o Produto Favorito.
+   * 
+   * @async
+   * @param {FavoriteProduct} favoriteProduct
+   * @returns {Promise}
+   * @memberof FavoriteProductService
+   */
+  async delete(favoriteProduct) {
+    let {"customer_id": customerId, "product_id": productId} = favoriteProduct;
+
+    favoriteProduct = await this.getUnique(customerId, productId);
+    if (!favoriteProduct) throw new InvalidError("Produto não está adicionado aos Favoritos."); // @todo daniel i18n
+
+    return this.deleteById(favoriteProduct.id);
+  }
+
+  /**
+   * Exclui o Produto Favorito conforme Id.
+   *
+   * @async
+   * @param {int} id
+   * @returns {Promise}
+   * @memberof FavoriteProductService
+   */
+  async deleteById(id) {
+    return this.dao.deleteById(id);
   }
 
   /**
@@ -50,6 +85,18 @@ class FavoriteProductService {
    */
   async getUnique(customerId, productId) {
     return this.dao.getUnique(customerId, productId);
+  }
+
+  /**
+   * Retorna os Produtos Favoritos conforme Consumidor.
+   *
+   * @async
+   * @param {int} customerId
+   * @returns {Promise<FavoriteProduct[]>}
+   * @memberof FavoriteProductService
+   */
+  async getByCustomer(customerId) {
+    return this.dao.getByCustomer(customerId);
   }
 }
 

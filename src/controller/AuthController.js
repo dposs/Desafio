@@ -1,8 +1,8 @@
-let httpStatus = require("http-status");
-let i18next = require("i18next");
+const httpStatus = require("http-status");
+const i18next = require("i18next");
 
-let AuthService = require("../service/AuthService");
-let InvalidPropertyError = require("../error/InvalidPropertyError");
+const AuthService = require("../service/AuthService");
+const InvalidPropertyError = require("../error/InvalidPropertyError");
 
 /**
  * Controller de Autenticacao.

@@ -1,6 +1,7 @@
-let httpStatus = require("http-status");
-let AbstractError = require("./common/AbstractError");
-let ErrorEnum = require("../enum/ErrorEnum");
+const httpStatus = require("http-status");
+
+const AbstractError = require("./common/AbstractError");
+const ErrorEnum = require("../enum/ErrorEnum");
 
 /**
  * Erro de requisição para recurso inexistente.

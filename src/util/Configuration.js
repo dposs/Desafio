@@ -1,7 +1,7 @@
-let _ = require("lodash");
-let config = require("config");
+const _ = require("lodash");
+const config = require("config");
 
-let InternalError = require("../error/InternalError");
+const InternalError = require("../error/InternalError");
 
 /**
  * Configurações por ambiente.

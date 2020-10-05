@@ -1,6 +1,5 @@
-let httpStatus = require("http-status");
-
-let CustomerService = require("../service/CustomerService");
+const httpStatus = require("http-status");
+const CustomerService = require("../service/CustomerService");
 
 /**
  * Controller de Consumidor.

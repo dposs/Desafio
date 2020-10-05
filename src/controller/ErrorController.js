@@ -1,7 +1,6 @@
-let AbstractError = require("../error/common/AbstractError");
-let InternalError = require("../error/InternalError");
-let UnauthorizedError = require("../error/UnauthorizedError");
-let ErrorEnum = require("../enum/ErrorEnum");
+const AbstractError = require("../error/common/AbstractError");
+const InternalError = require("../error/InternalError");
+const UnauthorizedError = require("../error/UnauthorizedError");
 
 /**
  * Controller de Erros.

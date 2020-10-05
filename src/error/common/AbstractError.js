@@ -1,5 +1,5 @@
-let _ = require("lodash");
-let i18next = require("i18next");
+const _ = require("lodash");
+const i18next = require("i18next");
 
 /**
  * Abstract Class de Erro.

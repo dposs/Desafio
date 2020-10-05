@@ -1,12 +1,12 @@
-let jwt = require("jsonwebtoken");
-let passport = require("passport");
-let JwtStrategy = require("passport-jwt").Strategy;
-let ExtractJwt = require("passport-jwt").ExtractJwt;
+const jwt = require("jsonwebtoken");
+const passport = require("passport");
+const JwtStrategy = require("passport-jwt").Strategy;
+const ExtractJwt = require("passport-jwt").ExtractJwt;
 
-let CustomerService = require("./CustomerService");
+const CustomerService = require("./CustomerService");
 
-let Configuration = require("../util/Configuration");
-let UnauthorizedError = require("../error/UnauthorizedError");
+const Configuration = require("../util/Configuration");
+const UnauthorizedError = require("../error/UnauthorizedError");
 
 /**
  * Service de Autenticação.
