@@ -1,12 +1,11 @@
-CREATE TABLE `challenge`.`favorite_product` (
-  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `customer_id` INT(10) UNSIGNED NOT NULL,
+CREATE TABLE `favorite_product` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `customer_id` int(10) unsigned NOT NULL,
+  `product_id` varchar(36) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
-  UNIQUE INDEX `id_customer_id_UNIQUE` (`id` ASC, `customer_id` ASC) VISIBLE,
-  INDEX `fk_favorite_product_customer_idx` (`customer_id` ASC) VISIBLE,
-  CONSTRAINT `fk_favorite_product_customer`
-    FOREIGN KEY (`customer_id`)
-    REFERENCES `challenge`.`customer` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `customer_id_product_id_UNIQUE` (`customer_id`, `product_id`),
+  KEY `fk_favorite_product_customer_INDEX` (`customer_id`),
+  CONSTRAINT `fk_favorite_product_customer` 
+    FOREIGN KEY (`customer_id`) 
+    REFERENCES `customer` (`id`)

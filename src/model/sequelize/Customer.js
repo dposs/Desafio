@@ -23,6 +23,7 @@ Customer.initialize = sequelize => {
   }, {
     sequelize,
     modelName: "Customer",
+    tableName: "customer",
     freezeTableName: true,
     paranoid: false,
     timestamps: false
@@ -30,7 +31,7 @@ Customer.initialize = sequelize => {
 }
 
 Customer.associate = models => {
-
+  // @todo daniel
 }
 
 module.exports = Customer;

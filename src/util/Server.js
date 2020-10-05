@@ -116,6 +116,7 @@ class Server {
   async onServerStart() {
     await this.initializeInternationalization();
     await this.initializeDataSources();
+    await this.initializeBasicAuthentication();
     await this.initializeModels();
     await this.initializeMiddlewares();
     await this.initializeRoutes();
@@ -166,6 +167,16 @@ class Server {
   }
 
   /**
+   * Inicializa os metodos de Autenticacao de Endpoint.
+   *
+   * @memberof Server
+   */
+  async initializeBasicAuthentication() {
+    let AuthService = require("../service/AuthService");
+    new AuthService().initialize();
+  }
+
+  /**
    * Inicializa os Models.
    *
    * @memberof Server
@@ -203,10 +214,12 @@ class Server {
     let AuthController = require("../controller/AuthController");
     let CustomerController = require("../controller/CustomerController");
     let ErrorController = require("../controller/ErrorController");
+    let FavoriteProductController = require("../controller/FavoriteProductController");
 
     let authController = new AuthController();
     let customerController = new CustomerController();
     let errorController = new ErrorController();
+    let favoriteProductController = new FavoriteProductController();
 
     // Routes
 
@@ -221,6 +234,9 @@ class Server {
       .put(authController.isAuthenticated(), (request, response, next) => customerController.update(request, response).catch(next))
       .delete(authController.isAuthenticated(), (request, response, next) => customerController.delete(request, response).catch(next));
     
+    router.route("/product/:id/favorite")
+      .post(authController.isAuthenticated(), (request, response, next) => favoriteProductController.create(request, response).catch(next));
+
     // Set Router
 
     this.express.use("/challenge", router);

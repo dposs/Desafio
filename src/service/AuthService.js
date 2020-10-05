@@ -9,7 +9,7 @@ let Configuration = require("../util/Configuration");
 let UnauthorizedError = require("../error/UnauthorizedError");
 
 /**
- * Service de Autenticacao.
+ * Service de Autenticação.
  *
  * @class AuthService
  */
@@ -32,7 +32,7 @@ class AuthService {
    */
   initialize() {
     passport.use(new JwtStrategy({
-      "jwtFromRequest": ExtractJwt.fromAuthHeader(),
+      "jwtFromRequest": ExtractJwt.fromAuthHeaderAsBearerToken(),
       "secretOrKey": this.security.secret
     }, (payload, done) => {
       return this.customerService.getById(payload.sub.id)

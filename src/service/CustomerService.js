@@ -29,6 +29,30 @@ class CustomerService {
   }
 
   /**
+   * Modifica o Consumidor.
+   *
+   * @async
+   * @param {Customer} customer
+   * @returns {Promise<Customer>}
+   * @memberof CustomerService
+   */
+  async update(customer) {
+    return this.dao.update(customer);
+  }
+
+  /**
+   * Exclui o Consumidor conforme Id.
+   *
+   * @async
+   * @param {int} id
+   * @returns {Promise}
+   * @memberof CustomerService
+   */
+  async deleteById(id) {
+    return this.dao.deleteById(id);
+  }
+
+  /**
    * Retorna o Consumidor conforme Id.
    *
    * @async

@@ -48,7 +48,7 @@ class AuthController {
    * @memberof AuthController
    */
   isAuthenticated() {
-    return this.authService.isUserAuthenticated(options);
+    return this.authService.isUserAuthenticated();
   }
 }
 

@@ -1,6 +1,4 @@
-let DataSource = require("../util/DataSource");
-
-let Customer = DataSource.getModel("Customer");
+let Customer = require("../model/sequelize/Customer");
 
 /**
  * Data Access Object (DAO) de Consumidor.
@@ -19,6 +17,30 @@ class CustomerDAO {
    */
   async create(customer) {
     return Customer.create(customer);
+  }
+
+  /**
+   * Modifica o Consumidor.
+   *
+   * @async
+   * @param {Customer} customer
+   * @returns {Promise<Customer>}
+   * @memberof CustomerDAO
+   */
+  async update(customer) {
+    return Customer.update(customer, {where: {id: customer.id}}).then(() => customer);
+  }
+
+  /**
+   * Exclui o Consumidor conforme Id.
+   *
+   * @async
+   * @param {int} id
+   * @returns {Promise}
+   * @memberof CustomerDAO
+   */
+  async deleteById(id) {
+    return Customer.destroy({where: {id}});
   }
 
   /**
