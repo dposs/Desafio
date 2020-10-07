@@ -99,124 +99,12 @@ class DataSource {
   }
 
   /**
-   * Versão estática da função 'startTransaction'.
-   * Utiliza como instancia o DataSource default.
-   *
-   * @async
-   * @static
-   * @param {Object} [options]
-   * @param {Function} [callback]
-   * @returns {Promise}
-   * @memberof DataSource
-   */
-  static async startTransaction(options, callback) {
-    if (!DataSource.default) {
-      throw new InternalError("DataSource default não definido.");
-    }
-
-    return DataSource.default.startTransaction(options, callback);
-  }
-
-  /**
-   * Versão estática da função 'useTransaction'.
-   * Utiliza como instancia o DataSource default.
-   *
-   * @async
-   * @static
-   * @param {Object} transaction
-   * @param {Object} [options]
-   * @param {Function} [callback]
-   * @returns {Promise}
-   * @memberof DataSource
-   */
-  static async useTransaction(transaction, options, callback) {
-    if (!DataSource.default) {
-      throw new InternalError("DataSource default não definido.");
-    }
-
-    return DataSource.default.useTransaction(transaction, options, callback);
-  }
-
-  /**
-   * Inicia e executa uma transação.
-   *
-   * @async
-   * @param {Object} [options]
-   * @param {Function} [callback]
-   * @returns {Promise}
-   * @memberof DataSource
-   */
-  async startTransaction(options, callback) {
-    let params = [];
-
-    if (options) params.push(options);
-    if (callback) params.push(callback);
-
-    switch(this.orm) {
-      case DataSourceORMEnum.SEQUELIZE:
-        return this.sequelize.transaction(...params);
-
-      default:
-        throw new IllegalArgumentError("Este Framework ORM não suporta controle de transações.");
-    }
-  }
-
-  /**
-   * Executa uma transação.
-   *
-   * @async
-   * @param {Object} [transaction]
-   * @param {Object} [options]
-   * @param {Function} [callback]
-   * @returns {Promise}
-   * @memberof DataSource
-   */
-  async useTransaction(transaction, options, callback) {
-    if (!callback) {
-      callback = options;
-      options = {};
-    }
-
-    switch(this.orm) {
-      case DataSourceORMEnum.SEQUELIZE:
-        return transaction ? callback(transaction) : this.startTransaction(options, callback);
-
-      default:
-        throw new IllegalArgumentError("Este Framework ORM não suporta controle de transações.");
-    }
-  }
-
-  /**
-   * Inicializa e retorna um Model.
-   *
-   * @param {<? extends Model>} model
-   * @returns {Object}
-   * @memberof DataSource
-   */
-  initializeModel(model) {
-    switch(this.orm) {
-      case DataSourceORMEnum.SEQUELIZE:
-        return model.initialize(this.sequelize);
-
-      default:
-        throw new IllegalArgumentError("Este Framework ORM não é suportado.");
-    }
-  }
-
-  /**
    * Armazena um Model.
    *
    * @param {Model} model
-   * @param {Object} [options.initializeModel = true]
    * @memberof DataSource
    */
-  addModel(model, options) {
-    let {initializeModel = true} = options || {};
-
-    if (initializeModel) {
-      model = this.initializeModel(model);
-    }
-
+  addModel(model) {
     this.models[model.name] = model;
   }
 
@@ -231,7 +119,7 @@ class DataSource {
    */
   static getModel(name) {
     if (!DataSource.default) {
-      throw new InternalError("DataSource default não definido.");
+      throw new InternalError("DataSource padrão não definido.");
     }
     return DataSource.default.getModel(name);
   }
@@ -239,59 +127,12 @@ class DataSource {
   /**
    * Retorna um Model.
    *
-   * @param {string|Object} name
+   * @param {string} name
    * @returns {Model}
    * @memberof DataSource
    */
   getModel(name) {
-    if (typeof name != "string") {
-      return name;
-    }
-
-    if (this.models[name]) {
-      return this.models[name];
-    }
-
-    let schema = this.getSchema(name);
-
-    if (!schema) {
-      throw new IllegalArgumentError("Schema '" + name + "' não definido. Utilize 'addSchema(schema)'.");
-    }
-
-    let model = this.initializeModel(schema);
-    this.addModel(schema.name, model);
-
-    return model;
-  }
-
-  /**
-   * Armazena um Schema.
-   *
-   * @param {Object} schema
-   * @param {Object} [options]
-   * @param {Object} [options.initializeModel = false]
-   * @memberof DataSource
-   */
-  addSchema(schema, options) {
-    let {initializeModel = false} = options || {};
-
-    this.schemas[schema.name] = schema;
-
-    if (initializeModel) {
-      let model = this.initializeModel(schema);
-      this.addModel(schema.name, model);
-    }
-  }
-
-  /**
-   * Retorna um Schema.
-   *
-   * @param {string} name
-   * @returns {Object}
-   * @memberof DataSource
-   */
-  getSchema(name) {
-    return this.schemas[name];
+    return this.models[name];
   }
 }
 

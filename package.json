@@ -32,5 +32,9 @@
     "passport-jwt": "~4.0.0",
     "sequelize": "~6.3.5",
     "superagent": "~6.1.0"
+  },
+  "devDependencies": {
+    "gulp": "~4.0.2",
+    "lookpath": "~1.1.0"
   }
 }

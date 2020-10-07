@@ -51,7 +51,7 @@ Customer.initialize = sequelize => {
  * @memberof Customer
  */
 Customer.associate = models => {
-  // @todo daniel
+  Customer.hasMany(models.FavoriteProduct, {foreignKey: "customer_id"});
 }
 
 module.exports = Customer;

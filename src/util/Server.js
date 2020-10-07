@@ -172,11 +172,15 @@ class Server {
     Loader
       .initialize(this.source)
       .load("model/sequelize")
-      .exec(Model => mySQL.addModel(Model));
+      .exec(model => {
+        model.initialize(mySQL.sequelize);
+        mySQL.addModel(model);
+      })
+      .exec(model => {
+        model.associate(mySQL.models)
+      });
 
-    Object.values(mySQL.models).forEach(model => {
-      model.associate(mySQL.models);
-    });
+    // Object.values(mySQL.models).forEach(model => model.associate(mySQL.models));
   }
 
   /**

@@ -21,9 +21,6 @@ exports.database = {
       username: "root",
       password: "root",
       timezone : "+00:00",
-      dialectOptions: {
-        decimalNumbers: true
-      },
       pool: {
     	  max: 10,
     	  min: 0,

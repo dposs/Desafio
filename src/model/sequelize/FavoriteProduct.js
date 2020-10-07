@@ -50,7 +50,7 @@ FavoriteProduct.initialize = sequelize => {
  * @memberof FavoriteProduct
  */
 FavoriteProduct.associate = models => {
-  // @todo daniel
+  FavoriteProduct.belongsTo(models.Customer, {foreignKey: "customer_id"});
 }
 
 module.exports = FavoriteProduct;

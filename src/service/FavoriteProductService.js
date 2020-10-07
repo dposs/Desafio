@@ -1,3 +1,5 @@
+const i18next = require("i18next");
+
 const FavoriteProductDAO = require("../dao/FavoriteProductDAO");
 const FavoriteProduct = require("../model/sequelize/FavoriteProduct");
 
@@ -33,10 +35,10 @@ class FavoriteProductService {
     let {"customer_id": customerId, "product_id": productId} = favoriteProduct;
 
     let exists = await this.getUnique(customerId, productId);
-    if (exists) throw new InvalidError("Produto já adicionado aos Favoritos."); // @todo daniel i18n
+    if (exists) throw new InvalidError(i18next.t("validation:entity.favorite_product.exists"));
 
     let product = await new ProductService().getById(productId);
-    if (!product) throw new InvalidError("Produto inexistente."); // @todo daniel i18n
+    if (!product) throw new InvalidError(i18next.t("validation:entity.product.nonexistent"));
 
     return this.dao.create(favoriteProduct);
   }
@@ -53,7 +55,7 @@ class FavoriteProductService {
     let {"customer_id": customerId, "product_id": productId} = favoriteProduct;
 
     favoriteProduct = await this.getUnique(customerId, productId);
-    if (!favoriteProduct) throw new InvalidError("Produto não está adicionado aos Favoritos."); // @todo daniel i18n
+    if (!favoriteProduct) throw new InvalidError(i18next.t("validation:entity.favorite_product.nonexistent"));
 
     return this.deleteById(favoriteProduct.id);
   }
