@@ -42,8 +42,7 @@ Iniciar a API através do comando `npm start`.
 A autenticação é realizada através de Json Web Token (JWT) (https://jwt.io).  
 RFC: https://tools.ietf.org/html/rfc7519
 
-O endpoint `/challenge/login` deve ser utilizado para autenticação.  
-No seu retorno constará o Token JWT, que será utilizado para autorizar o acesso do Consumidor à todos os endpoints protegidos, através do seguinte header:
+O endpoint `/challenge/login` deve ser utilizado para autenticação. No seu retorno constará o Token JWT, que deve ser utilizado para autorizar o acesso do Consumidor à todos os endpoints protegidos, através do seguinte header:
 
 - ```Authorization: Bearer TOKEN_JWT```
 
