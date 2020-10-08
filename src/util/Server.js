@@ -256,7 +256,7 @@ class Server {
     console.log(" -----" + "".padEnd(size, "-"));
     console.log("|     " + "".padEnd(size, " ") + "|");
     console.log("|     " + (this.name + " ONLINE").padEnd(size, " ") + "|");
-    console.log("|     ENVIRONMENT: " + this.environment.padEnd(size - 13, " ") + "|");
+    console.log("|     ENVIRONMENT: " + (this.environment || "-").padEnd(size - 13, " ") + "|");
     console.log("|     PORT: " + this.port.toString().padEnd(size - 6, " ") + "|");
     console.log("|     " + "".padEnd(size, " ") + "|");
     console.log(" -----" + "".padEnd(size, "-"));

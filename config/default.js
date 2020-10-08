@@ -34,21 +34,3 @@ exports.database = {
 exports.localization = {
   language: "pt-BR"
 };
-
-exports.log = {
-  level: "info",
-  transport: {
-    Console: {
-      colorize: true
-    },
-    File: {
-      filename: "server.log",
-      colorize: false,
-      json: false,
-      maxsize: 10485760,
-      maxFiles: 10,
-      tailable: true,
-      zippedArchive: true
-    }
-  }
-};
