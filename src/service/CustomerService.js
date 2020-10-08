@@ -50,7 +50,9 @@ class CustomerService {
    * @memberof CustomerService
    */
   async update(customer) {
-    return this.dao.update(customer);
+    return this.dao.update(customer).then(() => {
+      return this.getById(customer.id);
+    });
   }
 
   /**

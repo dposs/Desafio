@@ -1,10 +1,14 @@
 {
   "name": "desafio",
   "version": "1.0.0",
-  "description": "",
+  "description": "Desafio Luizalabs",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "npm run integration-test",
+    "test-coverage": "npm run integration-test-coverage",
+    "integration-test": "mocha test/integration/**/*.js --timeout 10000 --exit",
+    "integration-test-coverage": "nyc mocha test/integration/**/*.js --timeout 10000 --exit"
   },
   "repository": {
     "type": "git",
@@ -16,6 +20,10 @@
     "url": "https://github.com/dposs/Desafio/issues"
   },
   "homepage": "https://github.com/dposs/Desafio#readme",
+  "mocha": {
+    "reporter": "spec",
+    "slow": 0
+  },
   "dependencies": {
     "body-parser": "~1.19.0",
     "config": "~3.3.2",
@@ -34,7 +42,12 @@
     "superagent": "~6.1.0"
   },
   "devDependencies": {
+    "chai": "~4.2.0",
+    "chai-as-promised": "~7.1.1",
     "gulp": "~4.0.2",
-    "lookpath": "~1.1.0"
+    "lookpath": "~1.1.0",
+    "mocha": "~8.1.3",
+    "nyc": "~15.1.0",
+    "supertest": "~5.0.0"
   }
 }

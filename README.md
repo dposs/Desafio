@@ -53,3 +53,8 @@ O endpoint `/challenge/login` deve ser utilizado para autenticação. No seu ret
 https://documenter.getpostman.com/view/2913353/TVRhc9hC
 
 > A documentação acima também pode ser utilizada para download e importação das requisições na ferramenta Postman.
+
+## Possíveis Melhorias
+
+- [ ] Desenvolvimento de sistema de cache para Consumidores (Performance).
+- [ ] Worker Threads / Cluster (verificar casos de uso) (Performance).

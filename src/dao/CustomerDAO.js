@@ -28,7 +28,7 @@ class CustomerDAO {
    * @memberof CustomerDAO
    */
   async update(customer) {
-    return Customer.update(customer, {where: {id: customer.id}}).then(() => customer);
+    return Customer.update(customer, {where: {id: customer.id}});
   }
 
   /**
