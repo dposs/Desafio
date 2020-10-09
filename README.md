@@ -54,7 +54,25 @@ https://documenter.getpostman.com/view/2913353/TVRhc9hC
 
 > A documentação acima também pode ser utilizada para download e importação das requisições na ferramenta Postman.
 
+## Testes Automatizados
+
+**Integração**
+
+Os testes de integração podem ser executados através do comando:
+
+- ```npm run test```
+
+**Coverage**
+
+A cobertura de código pode ser verificada através do comando:
+
+- ```npm run test-coverage```
+
+**Preview**
+
+[![Integration Test](https://i.ibb.co/n1SvpLG/integration-test-preview.png)](https://ibb.co/n1SvpLG)
+
 ## Possíveis Melhorias
 
-- [ ] Desenvolvimento de sistema de cache para Consumidores (Performance).
+- [ ] Desenvolvimento de sistema de cache para autenticação de Consumidores (Performance).
 - [ ] Worker Threads / Cluster (verificar casos de uso) (Performance).
