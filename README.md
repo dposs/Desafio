@@ -20,7 +20,7 @@ Configurar as propriedades de acesso ao Banco de Dados, contidas no arquivo `./c
 - database.mysql.challenge.host
 - database.mysql.challenge.port
 - database.mysql.challenge.username
-- database.mysql.challenge.port
+- database.mysql.challenge.password
 
 **3. Banco de Dados**
 
