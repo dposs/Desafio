@@ -62,13 +62,11 @@ Os testes de integração podem ser executados através do comando:
 
 - ```npm run test```
 
-**Coverage**
-
 A cobertura de código pode ser verificada através do comando:
 
 - ```npm run test-coverage```
 
-**Preview**
+**Preview** (Test + Coverage)
 
 [![Integration Test](https://i.ibb.co/n1SvpLG/integration-test-preview.png)](https://ibb.co/n1SvpLG)
 
