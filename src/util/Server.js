@@ -251,15 +251,11 @@ class Server {
    * @memberof Server
    */
   showStartupInfo() {
-    let size = this.name.length + 20;
-
-    console.log(" -----" + "".padEnd(size, "-"));
-    console.log("|     " + "".padEnd(size, " ") + "|");
-    console.log("|     " + (this.name + " ONLINE").padEnd(size, " ") + "|");
-    console.log("|     ENVIRONMENT: " + (this.environment || "-").padEnd(size - 13, " ") + "|");
-    console.log("|     PORT: " + this.port.toString().padEnd(size - 6, " ") + "|");
-    console.log("|     " + "".padEnd(size, " ") + "|");
-    console.log(" -----" + "".padEnd(size, "-"));
+    console.log("");
+    console.log("  " + this.name + ": ONLINE");
+    console.log("  ENVIRONMENT: " + (this.environment || "-"));
+    console.log("  PORT: " + this.port.toString());
+    console.log("");
   }
 }
 

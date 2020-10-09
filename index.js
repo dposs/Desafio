@@ -1,5 +1,5 @@
 let Server = require("./src/util/Server");
 
-Server.create("Challenge").then(server => {
+Server.create("Desafio Luizalabs").then(server => {
   server.start();
 });

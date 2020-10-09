@@ -24,8 +24,6 @@ class ErrorController {
         error = new InternalError().from(error);
       }
 
-      console.error(error);
-
       delete error.json.data;
       delete error.data;
 
