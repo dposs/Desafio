@@ -31,7 +31,8 @@ Realizar a importação do Banco de Dados, que pode ser executada de duas formas
 **4. Ambiente (Opcional)**
 
 O ambiente de execução pode ser definido através da variável de ambiente `NODE_ENV` do sistema operacional.  
-Porém, para este desafio, não é obrigatório visto que **não** possuímos configurações específicas por ambiente (QA, Production, etc..).
+
+> A definição do ambiente de execução não é obrigatória para execução desta API, visto que a mesma **não** possui atualmente configurações específicas por ambiente (QA, Produção, etc..).
 
 ## Execução
 
