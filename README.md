@@ -58,8 +58,7 @@ https://documenter.getpostman.com/view/2913353/TVRhc9hC
 
 **Integração**
 
-Os testes de integração podem ser executados através do comando `npm run test`.
-
+Os testes de integração podem ser executados através do comando `npm run test`.  
 A cobertura de código pode ser verificada através do comando `npm run test-coverage`.
 
 **Preview** (Test + Coverage)
