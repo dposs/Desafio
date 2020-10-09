@@ -7,8 +7,8 @@
     "start": "node index.js",
     "test": "npm run integration-test",
     "test-coverage": "npm run integration-test-coverage",
-    "integration-test": "mocha test/integration/**/*.js --require test/setup.js --timeout 10000 --exit",
-    "integration-test-coverage": "nyc mocha test/integration/**/*.js --require test/setup.js --timeout 10000 --exit"
+    "integration-test": "mocha test/integration/run/**/*.js --require test/integration/setup.js --timeout 10000 --exit",
+    "integration-test-coverage": "nyc mocha test/integration/run/**/*.js --require test/integration/setup.js --timeout 10000 --exit"
   },
   "repository": {
     "type": "git",

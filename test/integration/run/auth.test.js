@@ -27,4 +27,13 @@ describe("/challenge/customer", function() {
       expect(response.body).to.have.property("jwt");
     }).should.notify(done);
   });
+
+  it("Auth: should not login with invalid credentials.", function(done) {
+    let request = supertest.post("/challenge/login")
+      .send({"email": "wrong@test.com"})
+      .expect(HttpStatus.UNAUTHORIZED)
+      .expect("Content-Type", /application\/json/);
+
+    expect(request).to.be.fulfilled.should.notify(done);
+  });
 });

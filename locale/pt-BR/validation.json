@@ -18,6 +18,9 @@
     "multipleOf": "Quantidade máxima de casas decimais excedida."
   },
   "entity": {
+    "customer": {
+      "exists": "E-mail já cadastrado."
+    },
     "favorite_product": {
       "exists": "Produto já adicionado aos Favoritos.",
       "nonexistent": "Produto não está adicionado aos Favoritos."

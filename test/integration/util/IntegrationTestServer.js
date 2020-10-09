@@ -1,8 +1,8 @@
-let chai = require("chai");
-let chaiAsPromised = require("chai-as-promised");
-let supertest = require("supertest");
+const chai = require("chai");
+const chaiAsPromised = require("chai-as-promised");
+const supertest = require("supertest");
 
-let Server = require("../../src/util/Server");
+const Server = require("../../../src/util/Server");
 
 /**
  * Server dos Testes de Integração.

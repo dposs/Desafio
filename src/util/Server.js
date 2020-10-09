@@ -1,16 +1,16 @@
-let passport = require("passport");
-let bodyParser = require("body-parser");
-let cors = require("cors");
-let express = require("express");
-let i18next = require("i18next");
-let i18nextFSBackend = require("i18next-node-fs-backend");
+const passport = require("passport");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const express = require("express");
+const i18next = require("i18next");
+const i18nextFSBackend = require("i18next-node-fs-backend");
 
-let Configuration = require("./Configuration");
-let DataSource = require("../util/DataSource");
-let DataSourceORMEnum = require("../enum/DataSourceORMEnum");
-let Loader = require("./Loader");
+const Configuration = require("./Configuration");
+const DataSource = require("../util/DataSource");
+const DataSourceORMEnum = require("../enum/DataSourceORMEnum");
+const Loader = require("./Loader");
 
-let RequestNotFoundError = require("../error/RequestNotFoundError");
+const RequestNotFoundError = require("../error/RequestNotFoundError");
 
 /**
  * Biblioteca de Gerenciamento do Servidor.

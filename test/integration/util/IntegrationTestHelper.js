@@ -1,5 +1,10 @@
-let AuthService = require("../../src/service/AuthService");
-let Customer = require("../../src/model/sequelize/Customer");
+const mock = require("mock-require");
+const sinon = require("sinon");
+
+const AuthService = require("../../../src/service/AuthService");
+const ProductService = require("../../../src/service/ProductService");
+
+const Customer = require("../../../src/model/sequelize/Customer");
 
 /**
  * Helper dos Testes de Integração.
@@ -32,6 +37,28 @@ class IntegrationTestHelper {
       "image": "Integration Test Image",
       "price": 1
     };
+  }
+
+  /**
+   * Configuração de Mocks.
+   *
+   * @static
+   * @memberof IntegrationTestHelper
+   */
+  static mock() {
+    let getById = sinon.stub(ProductService.prototype, "getById");
+
+    getById.withArgs("1").resolves({
+      "id": "1",
+      "title": "Integration Test Product",
+      "brand": "Integration Test Brand",
+      "image": "Integration Test Image",
+      "price": 1
+    });
+
+    getById.withArgs("unknown").resolves(null);
+
+    mock("../../../src/service/ProductService", ProductService);
   }
 
   /**
