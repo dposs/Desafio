@@ -5,7 +5,7 @@ before(async () => {
   await IntegrationTestServer.initialize();
 });
 
-describe("/challenge/customer", function() {
+describe("/challenge/login", function() {
 
   let customer;
 
