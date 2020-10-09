@@ -26,7 +26,7 @@ Configurar as propriedades de acesso ao Banco de Dados, contidas no arquivo `./c
 
 Realizar a importação do Banco de Dados, que pode ser executada de duas formas diferentes:
 - Executando o comando `gulp install` (necessário possuir `mysql` e `gulp` disponíveis na linha de comando).
-- Importando manualmente, através do arquivo `./database/instal.sql`.
+- Importando manualmente: `mysql -u username -p < ./database/install.sql`.
 
 **4. Ambiente (Opcional)**
 
