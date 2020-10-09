@@ -63,7 +63,7 @@ A cobertura de código pode ser verificada através do comando `npm run test-cov
 
 **Preview** (Test + Coverage)
 
-[![Integration Test](https://i.ibb.co/n1SvpLG/integration-test-preview.png)](https://ibb.co/n1SvpLG)
+[![Integration Test](https://i.ibb.co/vPVg2df/integration-test-preview.png)](https://ibb.co/vPVg2df)
 
 ## Possíveis Melhorias
 
