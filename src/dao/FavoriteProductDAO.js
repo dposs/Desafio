@@ -1,3 +1,4 @@
+const AbstractDAO = require("./abstract/AbstractDAO");
 const FavoriteProduct = require("../model/sequelize/FavoriteProduct");
 
 /**
@@ -5,30 +6,28 @@ const FavoriteProduct = require("../model/sequelize/FavoriteProduct");
  *
  * @class FavoriteProductDAO
  */
-class FavoriteProductDAO {
+class FavoriteProductDAO extends AbstractDAO {
 
   /**
-   * Cria o Produto Favorito.
+   * Cria uma instancia de FavoriteProductDAO.
    *
-   * @async
-   * @param {FavoriteProduct} favoriteProduct
-   * @returns {Promise<FavoriteProduct>}
+   * @param {{transation: Transaction}} options
    * @memberof FavoriteProductDAO
    */
-  async create(favoriteProduct) {
-    return FavoriteProduct.create(favoriteProduct);
+  constructor(options) {
+    super(FavoriteProduct, options);
   }
 
   /**
-   * Exclui o Produto Favorito conforme Id.
+   * Exclui os Produtos Favoritos conforme Consumidor.
    *
    * @async
-   * @param {int} id
-   * @returns {Promise<FavoriteProduct>}
+   * @param {int} customerId
+   * @returns {Promise}
    * @memberof FavoriteProductDAO
    */
-  async deleteById(id) {
-    return FavoriteProduct.destroy({where: {id}});
+  async deleteByCustomer(customerId) {
+    return super.deleteBy({where: {customer_id: customerId}});
   }
 
   /**
@@ -45,7 +44,7 @@ class FavoriteProductDAO {
    * @memberof FavoriteProductDAO
    */
   async getUnique(customerId, productId) {
-    return FavoriteProduct.findOne({
+    return super.get({
       where: {
         customer_id: customerId,
         product_id: productId
@@ -62,7 +61,7 @@ class FavoriteProductDAO {
    * @memberof FavoriteProductDAO
    */
   async getByCustomer(customerId) {
-    return FavoriteProduct.findAll({
+    return super.getAll({
       where: {
         customer_id: customerId
       }

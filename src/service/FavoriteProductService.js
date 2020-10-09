@@ -15,10 +15,11 @@ class FavoriteProductService {
   /**
    * Cria uma instancia de FavoriteProductService.
    *
+   * @param {{transaction: Transaction}} [options]
    * @memberof FavoriteProductService
    */
-  constructor() {
-    this.dao = new FavoriteProductDAO();
+  constructor(options) {
+    this.dao = new FavoriteProductDAO(options);
   }
 
   /**
@@ -70,6 +71,18 @@ class FavoriteProductService {
    */
   async deleteById(id) {
     return this.dao.deleteById(id);
+  }
+
+  /**
+   * Exclui os Produtos Favoritos conforme Consumidor.
+   *
+   * @async
+   * @param {int} customerId
+   * @returns {Promise}
+   * @memberof FavoriteProductService
+   */
+  async deleteByCustomer(customerId) {
+    return this.dao.deleteByCustomer(customerId);
   }
 
   /**

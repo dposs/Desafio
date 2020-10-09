@@ -1,6 +1,7 @@
 const i18next = require("i18next");
 
 const CustomerDAO = require("../dao/CustomerDAO");
+const DataSource = require("../util/DataSource");
 const InvalidPropertyError = require("../error/InvalidPropertyError");
 
 /**
@@ -13,10 +14,11 @@ class CustomerService {
   /**
    * Cria uma instancia de CustomerService.
    *
+   * @param {{transaction: Transaction}} [options]
    * @memberof CustomerService
    */
-  constructor() {
-    this.dao = new CustomerDAO();
+  constructor(options) {
+    this.dao = new CustomerDAO(options);
   }
 
   /**
@@ -64,7 +66,16 @@ class CustomerService {
    * @memberof CustomerService
    */
   async deleteById(id) {
-    return this.dao.deleteById(id);
+    let FavoriteProductService = require("./FavoriteProductService");
+
+    return DataSource.startTransaction(t => {
+      let customerDAO = new CustomerDAO({transaction: t});
+      let favoriteProductService = new FavoriteProductService({transaction: t});
+
+      return favoriteProductService.deleteByCustomer(id).then(() => {
+        return customerDAO.deleteById(id);
+      });
+    });
   }
 
   /**

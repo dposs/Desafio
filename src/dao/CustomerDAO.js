@@ -1,3 +1,4 @@
+const AbstractDAO = require("./abstract/AbstractDAO");
 const Customer = require("../model/sequelize/Customer");
 
 /**
@@ -5,54 +6,16 @@ const Customer = require("../model/sequelize/Customer");
  *
  * @class CustomerDAO
  */
-class CustomerDAO {
+class CustomerDAO extends AbstractDAO {
   
   /**
-   * Cria o Consumidor.
+   * Cria uma instancia de CustomerDAO.
    *
-   * @async
-   * @param {Customer} customer
-   * @returns {Promise<Customer>}
+   * @param {{transation: Transaction}} options
    * @memberof CustomerDAO
    */
-  async create(customer) {
-    return Customer.create(customer);
-  }
-
-  /**
-   * Modifica o Consumidor.
-   *
-   * @async
-   * @param {Customer} customer
-   * @returns {Promise<Customer>}
-   * @memberof CustomerDAO
-   */
-  async update(customer) {
-    return Customer.update(customer, {where: {id: customer.id}});
-  }
-
-  /**
-   * Exclui o Consumidor conforme Id.
-   *
-   * @async
-   * @param {int} id
-   * @returns {Promise}
-   * @memberof CustomerDAO
-   */
-  async deleteById(id) {
-    return Customer.destroy({where: {id}});
-  }
-
-  /**
-   * Retorna o Consumidor conforme Id.
-   *
-   * @async
-   * @param {int} id
-   * @returns {Promise<Customer>}
-   * @memberof CustomerDAO
-   */
-  async getById(id) {
-    return Customer.findByPk(id);
+  constructor(options) {
+    super(Customer, options);
   }
 
   /**
@@ -64,7 +27,7 @@ class CustomerDAO {
    * @memberof CustomerDAO
    */
   async getByEmail(email) {
-    return Customer.findOne({where: {email}});
+    return super.get({where: {email}});
   } 
 }
 

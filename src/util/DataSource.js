@@ -134,6 +134,48 @@ class DataSource {
   getModel(name) {
     return this.models[name];
   }
+
+  /**
+   * Versão estática da função 'startTransaction'.
+   * Utiliza como instancia o DataSource default.
+   *
+   * @async
+   * @static
+   * @param {Object} [options]
+   * @param {Function} [callback]
+   * @returns {Promise}
+   * @memberof DataSource
+   */
+  static async startTransaction(options, callback) {
+    if (!DataSource.default) {
+      throw new InternalError("DataSource default não definido.");
+    }
+    return DataSource.default.startTransaction(options, callback);
+  }
+
+  /**
+   * Inicia e executa uma transação.
+   *
+   * @async
+   * @param {Object} [options]
+   * @param {Function} [callback]
+   * @returns {Promise}
+   * @memberof DataSource
+   */
+  async startTransaction(options, callback) {
+    let params = [];
+
+    if (options) params.push(options);
+    if (callback) params.push(callback);
+
+    switch(this.orm) {
+      case DataSourceORMEnum.SEQUELIZE:
+        return this.sequelize.transaction(...params);
+
+      default:
+        throw new IllegalArgumentError("Este Framework ORM não suporta controle de transações.");
+    }
+  }
 }
 
 module.exports = DataSource;
