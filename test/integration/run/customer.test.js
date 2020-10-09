@@ -20,7 +20,7 @@ describe("/challenge/customer", function() {
     }).should.notify(done);
   });
 
-  it("Customer: should not create when e-mail already exists.", function(done) {
+  it("Customer: should not create if e-mail already exists.", function(done) {
     let request = supertest.post("/challenge/customer")
       .send(helper.fakeCustomer)
       .expect(HttpStatus.BAD_REQUEST)
